@@ -1,7 +1,7 @@
-Hướng dẫn sử dụng trang Web
+![image](https://github.com/user-attachments/assets/ef3f8e41-3d99-433b-b4dc-7411510d5f9a)![image](https://github.com/user-attachments/assets/eb306e48-d93c-42d6-a71d-f76718c17154)Hướng dẫn sử dụng trang Web
 
-Phần I: Trang Client
-1. **Header**
+**Phần I: Trang Client**
+**1. **Header****
 
   1.1: Tìm kiếm
       + Có thể tìm kiếm theo danh mục sản phẩm hoặc theo tên
@@ -92,6 +92,53 @@ Phần I: Trang Client
 
 **17. **Trang đổi mật khẩu****
     ![image](https://github.com/user-attachments/assets/2bfb9e7e-86a6-43f2-a7e5-a79d65e52b4b)
+
+
+**Phần II: Trang Admin**
+-> Phải đăng nhập thì mới được sử dụng:
++ Tài khoản quản trị viên: buianh09dung@gmail.com
++ Mật khẩu: 123456
+
+-> Có các trang con của mỗi phần, như chi tiết sản phẩm, sửa sản phẩm,.....: thấy hơi dài nên nghĩ không cần chụp ạ, hihi
+**1. Trang tổng quan**
+  ![image](https://github.com/user-attachments/assets/6ddc8917-c303-4f7c-8bc7-be4edeb7e17d)
+**2. Trang thông tin cá nhân & chỉnh sửa thông tin cá nhân**
+  ![image](https://github.com/user-attachments/assets/0f0de189-90b9-4c5f-ad78-b4e4b674de7f)
+  ![image](https://github.com/user-attachments/assets/afd410df-08fe-46b0-af61-f2a938b4a4fe)
+**3. Trang danh mục sản phẩm**
+  ![image](https://github.com/user-attachments/assets/658d3242-9378-46fb-805b-229393a931d8)
+**4. Trang danh sách sản phẩm và thùng rác**
+  ![image](https://github.com/user-attachments/assets/3f42f241-0a73-4c02-b10b-37ec61428211)
+  ![image](https://github.com/user-attachments/assets/2f335f06-4722-4551-b37b-ffe7289310d9)
+**5. Trang danh mục bài viết**
+  ![image](https://github.com/user-attachments/assets/8c20d6af-8820-4f84-86d5-52ac489e2c2b)
+**6. Trang danh sách bài viết và thùng rác**
+  ![image](https://github.com/user-attachments/assets/22048825-21fa-4a94-9e03-bc49ce581c0e)
+  ![image](https://github.com/user-attachments/assets/9ad19e65-95b2-4504-9f9a-11f1147bbbd6)
+**7. Trang quản ly đơn hàng**
+  ![image](https://github.com/user-attachments/assets/7b26383f-ecd3-4c88-8fd7-acf63385e8fd)
+**8. Trang quản lý tài khoản**
+  ![image](https://github.com/user-attachments/assets/1ebe67de-dd20-4f40-87f9-5ffe8e1735e6)
+**9. Trang quản lý nhóm quyền**
+  ![image](https://github.com/user-attachments/assets/c3f9bbfd-66da-40a7-b122-ecc1e7d5338e)
+**10. Trang phân quyền**
+  ![image](https://github.com/user-attachments/assets/17ce8f88-27d7-44d4-af63-477032034a78)
+**11. Trang cài đặt chung**
+  ![image](https://github.com/user-attachments/assets/a11aa10a-078a-48ce-bd44-3b5bf3da515d)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
