@@ -1,0 +1,12 @@
+mixin product-item(thumbnail, title, priceNew, price, discount, slug)
+    div(class="section-1__item")
+        .section-1__image
+            a(href=`/products/detail/${slug}`)
+                img(src=thumbnail alt=title)
+        .section-1__content
+            a(href=`/products/detail/${slug}`)
+                .section-1__title #{title}
+                .section-1__price
+                    .section-1__price-new #{priceNew.toLocaleString()}đ
+                    .section-1__price-old #{price.toLocaleString()}đ
+                .section-1__discount -#{discount}%

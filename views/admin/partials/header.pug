@@ -1,0 +1,8 @@
+header.header
+    .header__wrap
+        .header__title WELCOME TO ADMIN PAGE
+        .header__icons
+            a(href=`/${prefixAdmin}/accounts/my-profile` class="header__profile")
+                img(src=user.avatar) 
+            a(href=`/${prefixAdmin}/auth/logout`)
+                i(class="fa-solid fa-right-from-bracket" class="header__out")

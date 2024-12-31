@@ -1,0 +1,43 @@
+extends ../../layouts/default.pug
+
+block main
+    if(role.permissions.includes("blogs_create"))
+        div(class="block-main")
+            h1 #{pageTitle}
+
+            form(
+                action=`/${prefixAdmin}/informations`
+                method="POST"
+            )
+                div(class="form-group")
+                    label(for="books") Chính sách
+                    textarea(
+                        class="form-control"
+                        textarea-mce
+                        name="books"
+                        id="books"
+                        rows="5"
+                    ) #{information.books}
+                div(class="form-group")
+                    label(for="faqs") Câu Hỏi Thường Gặp (FAQs)
+                    textarea(
+                        class="form-control"
+                        textarea-mce
+                        name="faqs"
+                        id="faqs"
+                        rows="5"
+                    ) #{information.faqs}
+                div(class="form-group")
+                    label(for="term") Điều Khoản và Điều Kiện
+                    textarea(
+                        class="form-control"
+                        textarea-mce
+                        name="term"
+                        id="term"
+                        rows="5"
+                    ) #{information.term}
+                div(class="form-group")
+                    button(
+                        type="submit"
+                        class="btn btn-primary"
+                    ) Cập nhật

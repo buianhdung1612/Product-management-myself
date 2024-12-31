@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="cart success")
+        div(class="container")
+            h1(class="cart__title") #{pageTitle}
+            p(class="success__desc") Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhât.
+
+            if(order)
+                h4(class="success__info") Thông tin cá nhân
+                table(class="success__table-info")
+                    tbody
+                        tr
+                            td Họ tên
+                            td
+                                b #{order.fullName}
+                        tr
+                            td Số điện thoại
+                            td
+                                b #{order.phone}
+                        tr
+                            td Địa chỉ
+                            td
+                                b #{order.address}
+                h4(class="success__info") Thông tin sản phẩm
+                if(order.products.length > 0)
+                    table(class="cart__table" table-cart)
+                        thead
+                            th 
+                            th Tên
+                            th Giá
+                            th Số lượng
+                            th Tổng tiền
+                            th
+                        tbody
+                            each item, index in order.products
+                                tr
+                                    td
+                                        img(src=item.thumbnail, alt=item.title width="80px")
+                                    td
+                                        a(href=`/products/detail/${item.slug}`) #{item.title}
+                                    td #{item.priceNew}đ
+                                    td #{item.quantity}
+                                    td #{item.total.toLocaleString()}đ
+                                    td 
+                        
+                    h3(class="success__total") Tổng đơn hàng: #{total.toLocaleString()}đ

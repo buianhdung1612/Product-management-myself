@@ -1,0 +1,61 @@
+extends ../../layouts/default.pug
+block main
+    if(role.permissions.includes("roles_permissions")) 
+        div(class="block-main")
+            h1 #{pageTitle}
+
+            form(
+                action=`/${prefixAdmin}/settings/general?_method=PATCH`
+                method="POST"
+            )
+                div(class="form-group")
+                    label(for="websiteName") Tên website
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="websiteName"
+                        id="websiteName"
+                        value=setting.websiteName
+                    )
+                div(class="form-group")
+                    label(for="phone") Số điện thoại
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="phone"
+                        id="phone"
+                        value=setting.phone
+                    )
+                div(class="form-group")
+                    label(for="email") Email
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="email"
+                        id="email"
+                        value=setting.email
+                    )
+                div(class="form-group")
+                    label(for="address") Địa chỉ
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="address"
+                        id="address"
+                        value=setting.address
+                    )
+                div(class="form-group")
+                    label(for="copyright") Copyright
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="copyright"
+                        id="copyright"
+                        value=setting.copyright
+                    )
+                div(class="form-group")
+                    button(
+                        type="submit"
+                        class="btn btn-primary"
+                    ) Cập nhật
+            

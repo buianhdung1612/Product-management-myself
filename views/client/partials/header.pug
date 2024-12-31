@@ -1,0 +1,86 @@
+include ../mixins/sub-category.pug
+
+//- Header
+div(class="header")
+    div(class="container")
+        div(class="header__wrap")
+            a(class="header__logo" href="/")
+                span(class="header__title-logo--black") MAIKA
+                span(class="header__title-logo--yellow") COMPUTER
+            div(class="header__search")
+                div(class="header__filter sub-menu")
+                    a(href="/products") Tất cả 
+                    i(class="fa-solid fa-chevron-down")
+                    +sub-category(allCategory)
+                form(action="/products/search" class="header__form")
+                    input(type="text" name="keyword" placeholder="Nhập sản phẩm tìm kiếm..." value=keyword)
+                    button(type="submit" class="button") Tìm kiếm
+                //- .inner-suggest 
+                //-     .inner-list
+                //-         a(href=`/products/detail/:slugProduct}` class="inner-item")
+                //-             .inner-content
+                                
+            div(class="header__icons")
+                a(href="/cart" class="cart__icon")
+                    i(class="fa-solid fa-bag-shopping icon icon--shopping")
+                    span(class="cart_number") (#{miniCart})
+                div(class="cart__hover")
+                    each item in cart
+                        div(class="cart__hover-item")
+                            div(class="cart__hover-left")
+                                a(href=`/products/detail/${item.slug}`)
+                                    img(src=item.thumbnail alt=item.title)
+                            div(class="cart__hover-middle")
+                                a(class="cart__hover-title" href=`/products/detail/${item.slug}`) #{item.title}
+                                span(class="cart__hover-quantity") #{item.quantity}
+                                span(class="cart__hover-dot") x
+                                span(class="cart__hover-priceNew") #{item.priceNew.toLocaleString()}đ
+                            div(class="cart__hover-right") X    
+                    div(class="cart__hover-total") 
+                        div Tổng số phụ: 
+                        span #{total.toLocaleString()}đ
+                    div(class="cart__hover-button")
+                        a(class="button-view" href="/cart") Xem giỏ hàng 
+                        a(class="button-pay" href="/order") Thanh toán
+                if(user)
+                    a(href="/user/profile")
+                        if(user.avatar)
+                            img(src=user.avatar class="header__avatar")
+                        else
+                            i(class="fa-regular fa-circle-user icon icon--user")
+                            span(class="header__login") Thông tin
+                    a(href="/user/logout")
+                        i(class="fa-solid fa-right-from-bracket")
+                        span(class="header__register") Đăng xuất            
+                else 
+                    a(href="/user/login")
+                        i(class="fa-regular fa-user icon icon--user")
+                        span(class="header__login") Đăng nhập
+                    a(href="/user/register")
+                        i(class="fa-solid fa-user-plus")
+                        span(class="header__register") Đăng ký
+                    
+//- End Header
+
+//- Sub Header
+div(class="sub-header")
+    div(class="container")
+        div(class="sub-header__wrap")
+            div(class="sub-header__product-category sub-menu-2")
+                a(href="/products") Danh mục sản phẩm
+                i(class="fa-solid fa-chevron-down")
+                +sub-category(allCategory)
+            div(class="sub-header__menu")
+                ul
+                    li
+                        a(href="/") Trang chủ
+                    li
+                        a(href="/products") Sản phẩm
+                    li
+                        a(href="/blog") Tin tức
+                    li
+                        a(href="/contact") Liên hệ
+            div(class="sub-header__hotline")
+                i(class="fa-solid fa-phone")
+                span Hotline: <b>(+84) #{settingGeneral.phone}</b>
+//- End Sub Header

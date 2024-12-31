@@ -1,0 +1,241 @@
+extends ../../layouts/default.pug
+include ../../mixins/permission.pug
+
+block main
+  if(role.permissions.includes("roles_permissions")) 
+    div(class="block-main")
+      h1 #{pageTitle}
+      
+      div(class="text-right")
+        button(
+          type="submit"
+          class="btn btn-primary mb-3"
+          button-submit
+          data-path=`/${prefixAdmin}/roles/permissions`
+        ) Cập nhật
+
+      table(
+        class="table table-hover table-sm"
+        table-permissions=roles
+      )
+        thead
+          tr
+            th Tính năng
+            each item in roles
+              th(class="text-center" role-id=item.id) #{item.title}
+
+        tbody
+          //- Tổng quan
+          tr
+            td(colspan="4")
+                b Tổng quan
+          +permission([
+            {
+              "data-name": "dashboard_view",
+              "data-content": "Xem"
+            }
+          ])
+          
+          //- Hết Tổng quan
+
+          //- Danh mục sản phẩm
+          tr
+            td(colspan="4")
+              b Danh mục sản phẩm
+
+          +permission([
+              {
+                  "data-name": "products-category_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "products-category_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "products-category_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "products-category_delete",
+                  "data-content": "Xóa"
+              }
+          ])
+          //- Hết Danh mục sản phẩm
+          
+          //- Sản phẩm
+          tr
+            td(colspan="4")
+              b Sản phẩm
+
+          +permission([
+              {
+                  "data-name": "products_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "products_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "products_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "products_delete",
+                  "data-content": "Xóa"
+              },
+              {
+                  "data-name": "products_delete-destroy",
+                  "data-content": "Xóa vĩnh viễn"
+              }
+          ])
+          //- Hết Sản phẩm
+
+          //- Danh mục bài viết
+          tr
+            td(colspan="4")
+              b Danh mục bài viết
+
+          +permission([
+              {
+                  "data-name": "blogs-category_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "blogs-category_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "blogs-category_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "blogs-category_delete",
+                  "data-content": "Xóa"
+              }
+          ])
+          //- Hết Danh mục sản phẩm
+          
+          //- Bài viết
+          tr
+            td(colspan="4")
+              b Bài viết
+
+          +permission([
+              {
+                  "data-name": "blogs_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "blogs_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "blogs_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "blogs_delete",
+                  "data-content": "Xóa"
+              },
+              {
+                  "data-name": "blogs_delete-destroy",
+                  "data-content": "Xóa vĩnh viễn"
+              }
+          ])
+          //- Hết Bài viết
+
+          //- Đơn hàng
+          tr
+            td(colspan="4")
+              b Đơn hàng
+          +permission([
+              {
+                  "data-name": "orders_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "orders_edit",
+                  "data-content": "Duyệt đơn"
+              },
+              {
+                  "data-name": "orders_delete",
+                  "data-content": "Xóa"
+              }
+          ])
+          //- Hết Đơn hàng
+          
+          //- Nhóm quyền
+          tr
+            td(colspan="4")
+              b Nhóm quyền
+
+          +permission([
+              {
+                  "data-name": "roles_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "roles_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "roles_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "roles_delete",
+                  "data-content": "Xóa"
+              },
+              {
+                  "data-name": "roles_permissions",
+                  "data-content": "Phân quyền"
+              }
+          ])
+          //- Hết Nhóm quyền
+
+          //- Tài khoản
+          tr
+            td(colspan="4")
+              b Tài khoản
+
+          +permission([
+              {
+                  "data-name": "accounts_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "accounts_create",
+                  "data-content": "Thêm mới"
+              },
+              {
+                  "data-name": "accounts_edit",
+                  "data-content": "Chỉnh sửa"
+              },
+              {
+                  "data-name": "accounts_delete",
+                  "data-content": "Xóa"
+              },
+              {
+                  "data-name": "accounts_permissions",
+                  "data-content": "Phân quyền"
+              }
+          ])
+          //- Hết Tài khoản
+
+        //-   Setting
+        tr
+            td(colspan="4")
+              b Setting
+        +permission([
+              {
+                  "data-name": "settings_view",
+                  "data-content": "Xem"
+              },
+              {
+                  "data-name": "settings_edit",
+                  "data-content": "Chỉnh sửa"
+              }
+          ])
+        //-   Hết Setting

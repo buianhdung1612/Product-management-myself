@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("products_view"))
+        div(class="block-main")
+            .container.my-5
+                .row.justify-content-center
+                    .col-md-14
+                        .card.shadow-lg(style="background-color: #f7f0e1;")
+                            .card-body
+                                if product.title
+                                    h1.mb-3.text-primary.text-center #{product.title}
+                                if product.category_title
+                                    div.mb-4
+                                        h5 Danh mục: <b class="text-warning">#{product.category_title}</b>
+                                if product.price
+                                    div.mb-4
+                                        h5 Giá: <b class="text-success">#{product.price}$</b>
+                                if product.discountPercentage
+                                    div.mb-4
+                                        h5 Giảm giá: <b class="text-danger">#{product.discountPercentage}%</b>
+                                if product.stock
+                                    div.mb-4
+                                        h5 Còn lại: <b class="text-info">#{product.stock}</b>
+                                if product.thumbnail
+                                    div.mb-4
+                                        img(src=product.thumbnail, class="img-fluid rounded", alt=product.title, style="max-width: 150px;")
+                                if product.status
+                                    div.mb-4
+                                        span(class="mr-1") Trạng thái:
+                                        if product.status === "active"
+                                            span.badge.bg-success Hoạt động
+                                        else
+                                            span.badge.bg-danger Dừng hoạt động
+                                if product.position
+                                    div.mb-4
+                                        h5 Vị trí: <b>#{product.position}</b>
+                                if product.description
+                                    div.mb-4
+                                        h5(class="text-info text-center") Mô tả sản phẩm
+                                        p !{product.description}

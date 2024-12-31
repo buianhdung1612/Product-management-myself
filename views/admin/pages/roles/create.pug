@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug
+
+block main
+    if(role.permissions.includes("roles_create")) 
+        div(class="block-main")
+            h1 #{pageTitle}
+
+            form(
+                action=`/${prefixAdmin}/roles/create`
+                method="POST"
+            )
+                div(class="form-group")
+                    label(for="title") Tiêu đề
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="title"
+                        id="title"
+                        required 
+                    )
+                div(class="form-group")
+                    label(for="desc") Mô tả
+                    textarea(
+                        class="form-control"
+                        textarea-mce
+                        name="description"
+                        id="desc"
+                        rows="5"
+                    )
+                div(class="form-group")
+                    button(
+                        type="submit"
+                        class="btn btn-primary"
+                    ) Tạo mới

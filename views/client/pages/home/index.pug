@@ -1,0 +1,79 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug 
+include ../../mixins/product-item.pug 
+include ../../mixins/section-0-item.pug 
+include ../../mixins/category-featured-item.pug 
+
+block main
+    div(class="category")
+        div(class="container")
+            +box-head("Danh mục nổi bật")
+
+            div(class="category__wrap")
+                each item in categoriesFeatured
+                    +category-featured-item(item.thumbnail, item.title, item.totalProducts, item.slug)
+    div(class="section-0")
+        div(class="container")
+            div(class="section-0__wrap")
+                +section-0-item("fa-solid fa-rocket", "Giao hàng miễn phí", "Cho đơn hàng trên 5,000,000₫")
+                +section-0-item("fa-solid fa-arrows-rotate", "Hoàn trả 90 ngày", "Nếu sản phẩm có vấn đề")
+                +section-0-item("fa-regular fa-credit-card", "Thanh toán an toàn", "100% thanh toán an toàn")
+                +section-0-item("fa-regular fa-comments", "Hỗ trợ 24/7", "Hỗ trợ chuyên dụng")
+    div(class="section-1")
+        div(class="container")
+            +box-head("Sản phẩm nổi bật")
+
+            div(class="section-1__products")
+                each item in productsFeatured              
+                    +product-item(
+                        item.thumbnail, 
+                        item.title,
+                        item.priceNew,
+                        item.price,
+                        item.discountPercentage,
+                        item.slug
+                    )
+    div(class="section-1")
+        div(class="container")
+            +box-head("Sản phẩm mới")
+
+            div(class="section-1__products")
+                each item in productsNew            
+                    +product-item(
+                        item.thumbnail, 
+                        item.title,
+                        item.priceNew,
+                        item.price,
+                        item.discountPercentage,
+                        item.slug
+                    )
+    div(class="section-1")
+        div(class="container")
+            +box-head("Sản phẩm khuyến mãi")
+
+            div(class="section-1__products")
+                each item in productsDiscount            
+                    +product-item(
+                        item.thumbnail, 
+                        item.title,
+                        item.priceNew,
+                        item.price,
+                        item.discountPercentage,
+                        item.slug
+                    )
+    div(class="section-1")
+        div(class="container")
+            +box-head("Sản phẩm gợi ý")
+
+            div(class="section-1__products")
+                each item in productsChoose           
+                    +product-item(
+                        item.thumbnail, 
+                        item.title,
+                        item.priceNew,
+                        item.price,
+                        item.discountPercentage,
+                        item.slug
+                    )
+                
+                

@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="cart")
+        iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.212383430537!2d106.75249987583905!3d10.87144475743223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752789b8b7fa9f%3A0x101a355b18855298!2zNzkgxJAuIEFuIELDrG5oLCBBbiBCw6xuaCwgRMSpIEFuLCBCw6xuaCBExrDGoW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1735262484378!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade")
+        div(class="container")
+            h2(class="contact-page-title") #{pageTitle}
+            div(class="contact")    
+                div(class="contact__item")
+                    div(class="contact__title") Liên hệ trực tiếp
+                    div(class="contact__desc active") #{settingGeneral.email}
+                    div(class="contact__desc active") (+84) #{settingGeneral.phone}
+                div(class="contact__item")
+                    div(class="contact__title") Địa chỉ
+                    div(class="contact__desc") 1073/23 Cách Mạng Tháng 8,
+                    div(class="contact__desc") P.7, Q.Tân Bình, TP.HCM
+                div(class="contact__item")
+                    div(class="contact__title") Tuyển nhân viên
+                    div(class="contact__desc") Gửi CV về mail:
+                    div(class="contact__desc active") #{settingGeneral.email}
+                div(class="contact__item")
+                    div(class="contact__title") Dịch vụ khách hàng
+                    div(class="contact__desc active") #{settingGeneral.email}
+                    div(class="contact__desc active") (+84) #{settingGeneral.phone}
+                div(class="contact__item")
+                    div(class="contact__title") Dịch vụ quảng cáo
+                    div(class="contact__desc active") #{settingGeneral.email}
+                    div(class="contact__desc active") (+84) #{settingGeneral.phone}
+                div(class="contact__item")
+                    div(class="contact__title") Hỗ trợ khách hàng
+                    div(class="contact__desc active") #{settingGeneral.email}
+                    div(class="contact__desc active") (+84) #{settingGeneral.phone}
+                    

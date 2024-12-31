@@ -1,0 +1,30 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug 
+
+block main
+    div(class="container")
+        div(class="edit-profile")
+            h1 #{pageTitle}
+
+            form(action=`/user/profile/edit/${user.id}?_method=PATCH` method="POST" enctype="multipart/form-data")
+                div(class="profile__image edit-profile__image")
+                    if(user.avatar)
+                        img(src=user.avatar alt=user.fullName upload-image-preview)
+                    else 
+                        img(src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt=user.fullName upload-image-preview)
+                    label(for="avatar") <i class="fa-solid fa-pencil"></i>
+                    input(type="file" id="avatar" name="avatar" accept="image/*" hidden upload-image-input)
+                div(class="edit-profile__group")
+                    label(class="edit-profile__title" for="fullName") Họ và tên:
+                    input(type="text" id="fullName" name="fullName" value=user.fullName class="edit-profile__input")
+                div(class="edit-profile__group")
+                    label(class="edit-profile__title" for="email") Email: 
+                    input(type="email" id="email" name="email" value=user.email class="edit-profile__input")
+                div(class="edit-profile__group")
+                    label(class="edit-profile__title" for="phone") Số điện thoại: 
+                    input(type="text" id="phone" name="phone" value=user.phone class="edit-profile__input")
+                div(class="edit-profile__group")
+                    label(class="edit-profile__title" for="address") Địa chỉ: 
+                    input(type="text" id="address" name="address" value=user.address class="edit-profile__input")
+                a(href="/user/profile" class="button edit-profile__button-cancel") Quay lại 
+                button(class="button edit-profile__button-update" type="submit") Cập nhật

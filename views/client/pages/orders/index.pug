@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="cart")
+        div(class="container")
+            h1(class="cart__title") #{pageTitle}
+
+            table(class="cart__table" table-cart)
+                thead
+                    tr 
+                        th 
+                        th Sản phẩm 
+                        th Giá 
+                        th Số lượng 
+                        th Tổng 
+                tbody
+                    each item in products
+                        tr 
+                            td
+                                img(src=item.thumbnail alt=item.title)
+                            td #{item.title}
+                            td #{item.priceNew.toLocaleString()}₫
+                            td #{item.quantity}                               
+                            td #{item.total.toLocaleString()}₫
+            .order__footer
+                .order__form
+                    h3 Thông tin thanh toán
+                    form(action="/order" method="POST")
+                        div(class="order__left")
+                            div(class="order__input")
+                                label(id="fullName") Họ Tên <span>*</span>
+                                input(type="text" for="fullName" name="fullName" required)
+                            div(class="order__input")
+                                label(id="phone") Số điện thoại <span>*</span>
+                                input(type="text" for="phone" name="phone" required)
+                            div(class="order__input")
+                                label(id="address") Địa chỉ <span>*</span>
+                                input(type="text" for="address" name="address" required)
+                        div(class="order__right")
+                            div(class="cart__1")
+                                span() Tổng
+                                span() #{total.toLocaleString()}₫
+                            button(type="submit" class="button" ) Đặt hàng
+            
+            

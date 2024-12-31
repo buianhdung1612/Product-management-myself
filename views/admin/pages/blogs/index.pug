@@ -1,0 +1,147 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("blogs_view"))
+        div(class="block-main")
+            h1 #{pageTitle}
+
+            .card.mb-3
+                .card-header Bộ lọc và Tìm kiếm
+                .card-body
+                    .row    
+                        .col-4
+                            +box-filter([
+                                {
+                                    "label": "Tất cả",
+                                    "value": ""
+                                },
+                                {
+                                    "label": "Hoạt động",
+                                    "value": "active"
+                                },
+                                {
+                                    "label": "Dừng hoạt động",
+                                    "value": "inactive"
+                                }
+                            ])
+                        .col-8
+                            include ../../partials/form-search.pug
+            .card.mb-3
+                .card-header Sắp xếp
+                .card-body
+                    .row    
+                        .col-4
+                            select(class="form-control" sort-select)
+                                option(value="position-desc") Vị trí giảm dần
+                                option(value="position-asc") Vị trí tăng dần
+                                option(value="title-desc") Tiêu đề từ Z đến A
+                                option(value="title-asc") Tiêu đề từ A đến Z
+            .card 
+                .card-header Danh sách
+                .card-body
+                    .row.mb-3
+                        .col-6 
+                            if(role.permissions.includes("blogs_edit"))
+                                form(
+                                    form-change-multi 
+                                    data-path=`/${prefixAdmin}/blogs/change-multi`
+                                )
+                                    .input-group
+                                        select(name="status" class="form-control")
+                                            option(value="active") Hoạt động
+                                            option(value="inactive") Dừng hoạt động
+                                            option(value="delete") Xóa
+                                        .input-group-append
+                                            button(type="submit" class="btn btn-success") Áp dụng                          
+                        .col-3.text-right 
+                            if(role.permissions.includes("blogs_delete"))
+                                a(class="btn btn-secondary" href=`/${prefixAdmin}/blogs/trash`) 
+                                    <i class="fa-solid fa-trash mr-2"></i> Thùng rác
+                        .col-3.text-right 
+                            if(role.permissions.includes("blogs_create"))
+                                a(class="btn btn-outline-success" href=`/${prefixAdmin}/blogs/create`) + Thêm mới
+                    table.table.table-hover.table-sm
+                        thead
+                            tr  
+                                th 
+                                th STT
+                                th Hình ảnh
+                                th Tiêu đề
+                                th Trạng thái
+                                th Vị trí
+                                th Tạo bởi
+                                th Cập nhật bởi
+                                th Hành động
+                        tbody
+                            each item, index in blogs
+                                tr 
+                                    td 
+                                        input(type="checkbox" input-change=item.id)
+                                    td #{limitItems * (currentPage - 1) + index + 1}
+                                    td
+                                        img(
+                                            src=item.thumbnail
+                                            alt=item.title
+                                            width="100px"
+                                            height="auto"
+                                        )
+                                    td #{item.title}
+                                    td 
+                                        if(role.permissions.includes("blogs_edit"))
+                                            if(item.status=="active")
+                                                button(
+                                                    class="badge badge-success"
+                                                    item-id=item.id
+                                                    button-change-status="inactive"
+                                                    data-path=`/${prefixAdmin}/blogs/change-status`
+                                                ) Hoạt động
+                                            else if(item.status=="inactive")
+                                                button(
+                                                    class="badge badge-danger"
+                                                    item-id=item.id
+                                                    button-change-status="active"
+                                                    data-path=`/${prefixAdmin}/blogs/change-status`
+                                                ) Dừng hoạt động
+                                        else
+                                            if(item.status=="active")
+                                                button(class="badge badge-success") Hoạt động
+                                            else if(item.status=="inactive")
+                                                button(class="badge badge-danger") Dừng hoạt động
+                                    td 
+                                        if(role.permissions.includes("blogs_edit"))
+                                            input(
+                                                type="number"
+                                                input-position
+                                                value=item.position
+                                                data-path=`/${prefixAdmin}/blogs/change-position`
+                                                item-id=item.id
+                                                style="width: 60px"
+                                            )   
+                                        else 
+                                            span(class="ml-2") #{item.position} 
+                                    td  
+                                        div #{item.createdByFullName}
+                                        div #{item.createdAtFormat}      
+                                    td
+                                        div #{item.updatedByFullName}                
+                                        div #{item.updatedAtFormat}                
+                                    td
+                                        a(
+                                            class="btn btn-info btn-sm mr-1"
+                                            href=`/${prefixAdmin}/blogs/detail/${item.id}`
+                                        ) Chi tiết
+                                        if(role.permissions.includes("blogs_edit"))
+                                            a(
+                                                class="btn btn-warning btn-sm"
+                                                href=`/${prefixAdmin}/blogs/edit/${item.id}`
+                                            ) Sửa   
+                                        if(role.permissions.includes("blogs_delete"))                                
+                                            button(
+                                                class="btn btn-danger btn-sm ml-1" 
+                                                button-delete 
+                                                item-id=item.id 
+                                                data-path=`/${prefixAdmin}/blogs/delete`
+                                            ) Xóa
+
+            include ../../partials/pagination.pug

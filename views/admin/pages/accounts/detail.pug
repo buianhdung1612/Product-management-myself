@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("accounts_view"))
+        div(class="block-main")
+            .container.my-5
+                .row.justify-content-center
+                    .col-md-8
+                        .card.shadow-sm(style="background-color: #f7f0e1;")
+                            .card-body
+                                if account.fullName
+                                    h1.mb-3.text-primary.text-center #{account.fullName}
+                                if account.email
+                                    div.mb-4
+                                        h5 Email: <b class="text-success">#{account.email}</b>
+                                if account.phone
+                                    div.mb-4
+                                        h5 Số điện thoại: <b class="text-danger">#{account.phone}</b>
+                                if account.avatar
+                                    div.mb-4
+                                        img(src=account.avatar, class="img-fluid rounded", alt=account.fullName, style="max-width: 150px;")
+                                if account.role_title
+                                    div.mb-4
+                                        h5 Nhóm quyền: <b class="text-info">#{account.role_title}</b>
+                                if account.status
+                                    div.mb-4
+                                        span(class="mr-1") Trạng thái:
+                                        if account.status === "active"
+                                            span.badge.bg-success Hoạt động
+                                        else
+                                            span.badge.bg-danger Dừng hoạt động

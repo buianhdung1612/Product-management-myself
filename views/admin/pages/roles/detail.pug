@@ -1,0 +1,60 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="block-main")
+        .container.my-5
+            .row.justify-content-center
+                .col-md-8
+                    .card.shadow-sm(style="background-color: #f7f0e1;")
+                        .card-body
+                            if role.title
+                                h1.mb-3.text-primary.text-center #{role.title}
+                            if role.permissions
+                                div.mb-4
+                                    h5 Danh mục quyền:
+                                    ul(class="list-group list-group-flush")
+                                        //- Chia nhóm các quyền thành các mục trong danh sách
+                                        if(role.permissions.includes("dashboard_view")) 
+                                            li(class="list-group-item list-group-item-info") Xem trang tổng quan
+                                        if(role.permissions.includes("products-category_view")) 
+                                            li(class="list-group-item list-group-item-info") Xem trang danh mục sản phẩm
+                                        if(role.permissions.includes("products-category_create")) 
+                                            li(class="list-group-item list-group-item-success") Tạo mới danh mục sản phẩm
+                                        if(role.permissions.includes("products-category_edit")) 
+                                            li(class="list-group-item list-group-item-warning") Chỉnh sửa danh mục sản phẩm
+                                        if(role.permissions.includes("products-category_delete")) 
+                                            li(class="list-group-item list-group-item-danger") Xóa vĩnh viễn danh mục sản phẩm
+                                        if(role.permissions.includes("products_view")) 
+                                            li(class="list-group-item list-group-item-info") Xem trang sản phẩm
+                                        if(role.permissions.includes("products_create")) 
+                                            li(class="list-group-item list-group-item-success") Tạo mới sản phẩm
+                                        if(role.permissions.includes("products_edit")) 
+                                            li(class="list-group-item list-group-item-warning") Chỉnh sửa sản phẩm
+                                        if(role.permissions.includes("products_delete")) 
+                                            li(class="list-group-item list-group-item-danger") Xóa mềm và khôi phục sản phẩm
+                                        if(role.permissions.includes("products_delete-destroy")) 
+                                            li(class="list-group-item list-group-item-danger") Xóa vĩnh viễn sản phẩm
+                                        if(role.permissions.includes("roles_view")) 
+                                            li(class="list-group-item list-group-item-info") Xem trang nhóm quyền
+                                        if(role.permissions.includes("roles_create")) 
+                                            li(class="list-group-item list-group-item-success") Tạo mới nhóm quyền
+                                        if(role.permissions.includes("roles_edit")) 
+                                            li(class="list-group-item list-group-item-warning") Chỉnh sửa nhóm quyền
+                                        if(role.permissions.includes("roles_delete")) 
+                                            li(class="list-group-item list-group-item-danger") Xóa vĩnh viễn nhóm quyền
+                                        if(role.permissions.includes("roles_permissions")) 
+                                            li(class="list-group-item list-group-item-info") Phân quyền
+                                        if(role.permissions.includes("accounts_view")) 
+                                            li(class="list-group-item list-group-item-info") Xem trang tài khoản
+                                        if(role.permissions.includes("accounts_create")) 
+                                            li(class="list-group-item list-group-item-success") Tạo mới tài khoản
+                                        if(role.permissions.includes("accounts_edit")) 
+                                            li(class="list-group-item list-group-item-warning") Chỉnh sửa tài khoản
+                                        if(role.permissions.includes("accounts_delete")) 
+                                            li(class="list-group-item list-group-item-danger") Xóa vĩnh viễn tài khoản
+                                        if(role.permissions.includes("accounts_permissions")) 
+                                            li(class="list-group-item list-group-item-info") Phân quyền
+                            if role.description
+                                div.mb-4
+                                    h5 Mô tả nhóm quyền
+                                    p !{role.description}

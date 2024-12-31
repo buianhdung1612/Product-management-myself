@@ -1,0 +1,37 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug 
+
+block main
+    div(class="container")
+        div(class="detail")
+            div(class="detail__title") #{product.title}
+            div(class="detail__content")
+                div(class="detail__left")
+                    img(src=product.thumbnail alt=product.title)
+                    div(class="detail__trick") Nhấn vào để xem chế độ mở rộng
+                div(class="detail__right")
+                    div(class="detail__price") 
+                        div(class="detail__priceNew") #{product.priceNew.toLocaleString()}₫
+                        div(class="detail__priceOld") #{product.price.toLocaleString()}₫
+                        div(class="detail__discount") (-#{product.discountPercentage}%)
+                    if(product.stock > 0)
+                        div(class="detail__isInStock") Tình trạng: <span class="is">Còn hàng</span>
+                    else
+                        div(class="detail__isInStock") Tình trạng: <span class="not">Hết hàng</span>
+                    div(class="detail__info--1") ✔ Tình trạng: Mới 100% Quốc Tế
+                    div(class="detail__info--2") ✔ Bảo hành: 12 Tháng Apple
+                    div(class="detail__info--3") ✔ Trọn bộ: Nguyên seal chưa Active
+                    if(product.stock > 0)
+                        form(action=`/cart/add/${product.id}` method="POST")
+                            input(class="detail__quantity" type="number" name="quantity" value="1" min="1" max=product.stock) 
+                            button(class="detail__button button" type="submit") Thêm vào giỏ hàng
+                        div(class="detail__category") 
+                            | Danh mục: 
+                            a(href=`/products/${product.category_slug}`) #{product.category_title}
+            div(class="detail__description")
+                div(class="detail__descTitle") Mô tả
+                div(class="detail__desc") !{product.description}
+
+
+
+        

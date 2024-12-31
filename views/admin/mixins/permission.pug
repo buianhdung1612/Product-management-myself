@@ -1,0 +1,7 @@
+mixin permission(permissions)
+    each permission in permissions
+        tr(data-name=permission['data-name'])
+            td #{permission['data-content']}
+            each item in roles
+                td(class="text-center")
+                    input(type="checkbox" data-id=item.id)

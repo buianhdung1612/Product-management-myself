@@ -1,0 +1,83 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("orders_view"))
+        div(class="block-main")
+            h1 #{pageTitle}
+            .card.mb-3
+                .card-header Bộ lọc và Tìm kiếm
+                .card-body
+                    .row    
+                        .col-4
+                            +box-filter([
+                                {
+                                    "label": "Tất cả",
+                                    "value": ""
+                                },
+                                {
+                                    "label": "Chờ duyệt",
+                                    "value": "wait"
+                                },
+                                {
+                                    "label": "Đã duyệt",
+                                    "value": "confirm"
+                                }
+                            ])
+
+            .card.mb-3
+                .card-header Danh sách 
+                .card-body
+                    table(
+                        class="table table-hover table-sm"
+                    )
+                        thead
+                            tr
+                                th STT
+                                th Tình trạng
+                                th Khách hàng
+                                th Điện thoại khách
+                                th Địa chỉ giao hàng
+                                th Hành động
+                        tbody
+                            each item, index in orders
+                                tr
+                                    td #{index + 1}
+                                    td
+                                        if(role.permissions.includes("orders_edit"))
+                                            if (item.status == "wait")
+                                                a(
+                                                    href="javascript:;"
+                                                    class="badge badge-secondary"
+                                                    item-id=item.id
+                                                    data-path=`/${prefixAdmin}/orders/change-status`
+                                                    button-change-status="confirm"
+                                                ) Chờ duyệt
+                                            else if(item.status == "confirm")
+                                                a(
+                                                    href="javascript:;"
+                                                    class="badge badge-success"
+                                                    item-id=item.id
+                                                    data-path=`/${prefixAdmin}/orders/change-status`
+                                                    button-change-status="wait"
+                                                ) Đã duyệt
+                                        else
+                                            if(item.status=="wait")
+                                                button(class="badge badge-secondary") Chờ duyệt
+                                            else if(item.status=="confirm")
+                                                button(class="badge badge-success") Đã duyệt
+                                    td #{item.fullName}
+                                    td #{item.phone}
+                                    td #{item.address}                              
+                                    td
+                                        a(
+                                            class="btn btn-info btn-sm"
+                                            href=`/${prefixAdmin}/orders/detail/${item.id}`
+                                        ) Chi tiết
+                                        if(role.permissions.includes("orders_delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm ml-1"
+                                                item-id=item.id
+                                                button-delete-destroy
+                                                data-path=`/${prefixAdmin}/orders/delete-destroy`
+                                            ) Xóa

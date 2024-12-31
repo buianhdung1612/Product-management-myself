@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+
+block main
+    if(role.permissions.includes("blogs_view"))
+        div(class="block-main")
+            .container.my-5
+                .row.justify-content-center
+                    .col-md-8
+                        .card.shadow-sm(style="background-color: #f7f0e1;")
+                            .card-body
+                                if blog.title
+                                    h1.mb-3.text-primary  #{blog.title}
+                                if blog.category_title
+                                    div.mb-4
+                                        h5 Danh mục: <b class="text-warning">#{blog.category_title}</b>
+                                if blog.createdByFullName
+                                    div.mb-4
+                                        h5 Tác giả: <b class="text-dark">#{blog.createdByFullName}</b>
+                                if blog.thumbnail
+                                    div.mb-4
+                                        img(src=blog.thumbnail, class="img-fluid rounded", alt=blog.title, style="max-width: 150px;")
+                                if blog.status
+                                    div.mb-4
+                                        span(class="mr-1") Trạng thái:
+                                        if blog.status === "active"
+                                            span.badge.bg-success Hoạt động
+                                        else
+                                            span.badge.bg-danger Dừng hoạt động
+                                if blog.position
+                                    div.mb-4
+                                        h5 Vị trí: <b>#{blog.position}</b>
+                                if blog.content
+                                    div.mb-4.desc
+                                        h5 Nội dung bài viết
+                                        p() !{blog.content}

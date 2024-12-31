@@ -1,0 +1,21 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="cart")
+        div(class="container")
+            h1(class="cart__title") #{pageTitle}
+
+            div(class="blog-category")
+                a(href="/blog" class="blog-category__title" blog-category-button) Tất cả
+                each item in blogCategories                    
+                    a(href=`/blog/${item.slug}` class="blog-category__title" blog-category-button) #{item.title}
+
+                .blog-category__wrap
+                    each item in blogs
+                        a(class="blog-category__item" href=`/blog/detail/${item.slug}`)
+                            .blog-category__image
+                                img(src=item.thumbnail alt=item.title)
+                            .blog-category__categoryName #{item.category_name}
+                            .blog-category__title-item #{item.title}
+            
+            include ../../partials/pagination.pug

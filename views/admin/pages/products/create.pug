@@ -1,0 +1,140 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("products_create"))
+        div(class="block-main")
+            h1 #{pageTitle}
+
+            form(
+                action=`/${prefixAdmin}/products/create`
+                method="POST"
+                enctype="multipart/form-data"
+            )
+                div(class="form-group")
+                    label(for="title") Tiêu đề
+                    input(
+                        type="text"
+                        class="form-control"
+                        name="title"
+                        id="title"
+                        required 
+                    )
+                div(class="form-group")
+                    label(for="category_id") Danh mục 
+                    select(
+                        class="form-control"
+                        id="category_id"
+                        name="category_id"
+                    )
+                        option(value="") -- Chọn danh mục --
+                        each item in listCategory
+                            option(value=item.id) #{item.title}
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        name="featured"
+                        id="featured1"
+                        value="1"
+                    )
+                    label(for="featured1" class="form-check-label") Nổi bật
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        name="featured"
+                        id="featured0"
+                        value="0"
+                        checked
+                    )
+                    label(for="featured0" class="form-check-label") Không nổi bật
+                div(class="form-group")
+                    label(for="desc") Mô tả
+                    textarea(
+                        class="form-control"
+                        textarea-mce
+                        name="description"
+                        id="desc"
+                        rows="5"
+                    )
+                div(class="form-group")
+                    label(for="price") Giá
+                    input(
+                        type="number"
+                        class="form-control"
+                        name="price"
+                        id="price"
+                        value="0"
+                        min="0" 
+                    )
+                div(class="form-group")
+                    label(for="discount") % Giảm giá
+                    input(
+                        type="number"
+                        class="form-control"
+                        name="discountPercentage"
+                        id="discount"
+                        value="0"
+                        min="0" 
+                    )
+                div(class="form-group")
+                    label(for="stock") Số lượng
+                    input(
+                        type="number"
+                        class="form-control"
+                        name="stock"
+                        id="stock"
+                        value="0"
+                        min="0" 
+                    )
+                div(class="form-group" upload-image)
+                    label(for="thumbnail") Ảnh
+                    input(
+                        type="file"
+                        class="form-control-file"
+                        name="thumbnail"
+                        id="thumbnail"
+                        accept="image/*"
+                        upload-image-input
+                    )
+                    img(
+                        src=""
+                        class="image-preview"
+                        upload-image-preview
+                    )
+                    button(class="btn btn-secondary btn-preview" btn-preview) Xóa
+                div(class="form-group")
+                    label(for="position") Vị trí
+                    input(
+                        type="number"
+                        class="form-control"
+                        name="position"
+                        id="position"
+                        placeholder="Tự động tăng"
+                        min="1"
+                    )
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        name="status"
+                        id="statusActive"
+                        value="active"
+                        checked
+                    )
+                    label(for="statusActive" class="form-check-label") Hoạt động
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        name="status"
+                        id="statusInActive"
+                        value="inactive"
+                    )
+                    label(for="statusInActive" class="form-check-label") Dừng hoạt động
+                div(class="form-group")
+                    button(
+                        type="submit"
+                        class="btn btn-primary"
+                    ) Tạo mới

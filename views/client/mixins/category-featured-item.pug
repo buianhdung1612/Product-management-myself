@@ -1,0 +1,7 @@
+mixin category-featured-item(thumbnail, title, stock, slug)
+    div(class="category__item")
+        a(href=`/product-category/${slug}`)
+            div(class="category__image")
+                img(src=thumbnail alt=title)
+            div(class="category__title") #{title}
+            div(class="category__stock") #{stock} sản phẩm

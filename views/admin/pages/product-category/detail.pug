@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+
+block main
+    if(role.permissions.includes("products-category_view"))
+        div(class="block-main")
+            .container.my-5
+                .row.justify-content-center
+                    .col-md-8
+                        .card.shadow-sm(style="background-color: #f7f0e1;")
+                            .card-body
+                                if category.title
+                                    h1.mb-3.text-primary.text-center #{category.title}
+                                if category.parent_id
+                                    div.mb-4
+                                        h5 Danh mục: <b>#{category.parentTitle}</b>
+                                if category.thumbnail
+                                    div.mb-4
+                                        img(src=category.thumbnail, class="img-fluid rounded", alt=category.title, style="max-width: 150px;")
+                                if category.status
+                                    div.mb-4
+                                        span(class="mr-1") Trạng thái:
+                                        if category.status === "active"
+                                            span.badge.bg-success Hoạt động
+                                        else
+                                            span.badge.bg-danger Dừng hoạt động
+                                if category.position
+                                    div.mb-4
+                                        h5 Vị trí: <b>#{category.position}</b>
+                                if category.description
+                                    div.mb-4
+                                        h5 Mô tả danh mục
+                                        p !{category.description}

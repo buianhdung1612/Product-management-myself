@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug 
+
+block main
+    div(class="container")
+        div(class="profile")
+            h1 #{pageTitle}
+            div(class="profile__wrap")
+                div(class="profile__left")
+                    div(class="profile__image")
+                        if(user.avatar)
+                            img(src=user.avatar alt=user.fullName)
+                        else 
+                            img(src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt=user.fullName)
+                div(class="profile__right")
+                    if(user.fullName)
+                        div(class="profile__group")
+                            div(class="profile__title") Họ và tên:
+                            div(class="profile__desc") #{user.fullName}
+                    if(user.email)
+                        div(class="profile__group")
+                            div(class="profile__title") Email:
+                            div(class="profile__desc") #{user.email}
+                    if(user.phone)
+                        div(class="profile__group")
+                            div(class="profile__title") Số điện thoại:
+                            div(class="profile__desc") #{user.phone}
+                    if(user.address)
+                        div(class="profile__group")
+                            div(class="profile__title") Địa chỉ:
+                            div(class="profile__desc") #{user.address}
+                    a(class="button" href=`/user/profile/edit/${user.id}`) Chỉnh sửa thông tin cá nhân

@@ -1,0 +1,13 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug 
+include ../../mixins/product-item.pug 
+
+
+block main
+    div(class="container")
+        include ../../partials/sort-product.pug
+
+        div(class="section-1__products")
+            each item in products
+                +product-item(item.thumbnail, item.title, item.priceNew, item.price, item.discountPercentage, item.slug)
+        include ../../partials/pagination.pug

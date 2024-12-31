@@ -1,0 +1,60 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="cart")
+        div(class="container")
+            h1(class="cart__title") #{pageTitle}
+
+            if(products.length > 0)
+                table(class="cart__table" table-cart)
+                    thead
+                        tr 
+                            th 
+                            th Sản phẩm 
+                            th Giá 
+                            th Số lượng 
+                            th Tổng 
+                            th
+                    tbody
+                        each item in products
+                            tr 
+                                td
+                                    img(src=item.thumbnail alt=item.title)
+                                td  
+                                    a(href=`/products/detail/${item.slug}`) #{item.title}
+                                td #{item.priceNew.toLocaleString()}₫
+                                td 
+                                    input(
+                                        type="number"
+                                        name="quantity"
+                                        value=item.quantity
+                                        min="1"
+                                        item-id=item.productId
+                                        style="width: 100%"
+                                        data-path="/cart/update"
+                                    )
+                                td  #{item.total.toLocaleString()}₫
+                                td  
+                                    a(
+                                        href=`/cart/delete/${item.productId}`
+                                    ) X
+                .cart__footer
+                    .cart__back.button
+                        a(href="/products")
+                            i(class="fa-solid fa-arrow-left")
+                            span() Quay lại sản phẩm
+                    .cart__pay
+                        .cart__1
+                            span() Tổng
+                            span() #{total.toLocaleString()}₫
+                        .cart__2.button 
+                            a(href="/order") Tiến hành thanh toán
+
+            else
+                .cart__empty
+                    <i class="fa-regular fa-square"></i>
+                    span() Chưa có sản phẩm nào trong giỏ hàng.
+                .cart__empty-back.button 
+                    a(href="/products") Quay trở lại cửa hàng
+            
+            

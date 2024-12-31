@@ -1,0 +1,43 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="block-main container py-5")
+        h1(class="mb-4 text-center") #{pageTitle}
+
+        .profile-card.card.shadow-lg(style="background-color: #f7f0e1;")
+            .card-body
+                .row
+                    .col-md-4.text-center
+                        if (user.avatar)
+                            img(src=user.avatar width="150px" class="rounded-circle shadow")
+
+                    .col-md-8
+                        if (user.fullName)
+                            p(class="user-info mb-2") 
+                                i(class="fas fa-user mr-2") 
+                                b Họ tên: 
+                                span #{user.fullName}
+                        if (user.email)
+                            p(class="user-info mb-2") 
+                                i(class="fas fa-envelope mr-2") 
+                                b Email: 
+                                span #{user.email}
+                        if (user.phone)
+                            p(class="user-info mb-2") 
+                                i(class="fas fa-phone-alt mr-2") 
+                                b Số điện thoại: 
+                                span #{user.phone}
+                        p(class="status mb-2")
+                            i(class="fas fa-check-circle mr-2" style="color: #28a745") 
+                            b Trạng thái: 
+                            span(class=user.status === "active" ? "text-success" : "text-danger")
+                                | #{user.status === "active" ? "Hoạt động" : "Dừng hoạt động"}
+                        if (role.title)
+                            p(class="user-info mb-2") 
+                                i(class="fas fa-cogs mr-2") 
+                                b Phân quyền: 
+                                span #{role.title}
+                        a(
+                            href=`/${prefixAdmin}/accounts/my-profile/edit`
+                            class="btn btn-warning btn-lg mt-3 w-100"
+                        ) Chỉnh sửa thông tin cá nhân

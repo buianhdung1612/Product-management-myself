@@ -1,0 +1,46 @@
+.sider
+    a(class="sider__logo" href=`/${prefixAdmin}/dashboard`)
+        span(class="sider__logo--black") MAIKA
+        span(class="sider__logo--yellow") COMPUTER
+    .sider__menu
+        ul
+            if(role.permissions.includes("dashboard_view"))
+                li 
+                    <i class="fa-solid fa-gauge-high"></i>
+                    a(href=`/${prefixAdmin}/dashboard`) Tổng quan
+            if(role.permissions.includes("products-category_view"))
+                li
+                    <i class="fa-solid fa-table"></i>
+                    a(href=`/${prefixAdmin}/products-category`) Danh mục sản phẩm
+            if(role.permissions.includes("products_view"))
+                li 
+                    <i class="fa-solid fa-border-none"></i>
+                    a(href=`/${prefixAdmin}/products`) Sản phẩm
+            if(role.permissions.includes("blogs-category_view"))
+                li
+                    <i class="fa-brands fa-joomla"></i>
+                    a(href=`/${prefixAdmin}/blogs-category`) Danh mục bài viết
+            if(role.permissions.includes("blogs_view"))
+                li 
+                    <i class="fa-solid fa-blog"></i>
+                    a(href=`/${prefixAdmin}/blogs`) Bài viết       
+            li 
+                <i class="fa-solid fa-hurricane"></i>
+                a(href=`/${prefixAdmin}/orders`) Đơn hàng
+            if(role.permissions.includes("roles_view"))
+                li 
+                    <i class="fa-solid fa-group-arrows-rotate"></i>
+                    a(href=`/${prefixAdmin}/roles`) Nhóm quyền
+            if(role.permissions.includes("roles_permissions"))
+                li 
+                    <i class="fa-solid fa-object-group"></i>
+                    a(href=`/${prefixAdmin}/roles/permissions`) Phân quyền
+            if(role.permissions.includes("accounts_view"))
+                li 
+                    <i class="fa-solid fa-users"></i>
+                    a(href=`/${prefixAdmin}/accounts`) Tài khoản
+            if(role.permissions.includes("settings_view"))
+                li 
+                    <i class="fa-solid fa-gear"></i>
+                    a(href=`/${prefixAdmin}/settings/general`) Cài đặt chung
+            
