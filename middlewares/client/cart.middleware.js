@@ -15,7 +15,7 @@ module.exports.cart = async (req, res, next) => {
             expires: new Date(Date.now() + expriresDay)
         })
 
-        res.locals.cart = 0;
+        res.locals.cart = [];
         res.locals.miniCart = 0;
     }
     else if(req.cookies.cartId && !req.cookies.tokenUser){
