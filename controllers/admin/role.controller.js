@@ -93,7 +93,7 @@ module.exports.detail = async (req, res) => {
 
     res.render("admin/pages/roles/detail", {
         pageTitle: "Chi tiết nhóm quyền",
-        role: role
+        roleDetail: role
     })
 }
 

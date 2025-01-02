@@ -3,6 +3,7 @@ const ForgotPassword = require("../../models/forgot-password.model");
 const md5 = require("md5");
 const generateHelper = require("../../helpers/generate.helpers");
 const sendMailHelper = require("../../helpers/sendMail.helper");
+const Cart = require("../../models/cart.model");
 
 module.exports.login = (req, res) => {
     res.render("client/pages/users/login", {
@@ -39,6 +40,12 @@ module.exports.loginPost = async (req, res) => {
 
     res.cookie("tokenUser", existUser.token);
 
+    const cart = await Cart.findOne({
+        userId: existUser.id
+    })
+
+    res.cookie("cartId", cart.id)
+
     req.flash("success", "Đăng nhập thành công")
 
     res.redirect("/")
@@ -51,7 +58,8 @@ module.exports.forgotPassword = (req, res) => {
 }
 
 module.exports.logout = (req, res) => {
-    res.clearCookie("tokenUser");   
+    res.clearCookie("tokenUser"); 
+    res.clearCookie("cartId");  
     req.flash("success", "Đã đăng xuất");
     res.redirect("/");
 }
@@ -116,8 +124,17 @@ module.exports.registerPost = async (req, res) => {
 
     const newUser = new User(dataUser);
     await newUser.save();
-
     res.cookie("tokenUser", newUser.token);
+
+    const expriresDay = 365 * 24 * 60 * 60 * 10000;
+    const cart = new Cart({
+        userId: newUser.id,
+        exprireAt: Date.now() + expriresDay
+    })
+    await cart.save();
+    res.cookie("cartId", cart.id, {
+        expires: new Date(Date.now() + expriresDay)
+    })
 
     req.flash("success", "Đăng ký tài khoản thành công");
 

@@ -72,7 +72,8 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.search = async (req, res) => {
-    const keyword = req.query.keyword;
+    const type = req.params.type;
+    const keyword = `${req.query.keyword}`;
 
     let keywordRegex = keyword.trim();
     keywordRegex = keywordRegex.replace(/\s+/g, "-");
@@ -153,14 +154,22 @@ module.exports.search = async (req, res) => {
     // Phân trang sau khi sắp xếp
     const paginatedProducts = productResult.slice(skip, skip + limitItems);
 
-    res.render('client/pages/products/search.pug', {
-        pageTitle: `Kết quả tìm kiếm: ${keyword}`,
-        keyword: keyword,
-        totalProduct: totalProduct,
-        products: paginatedProducts,
-        totalPage: totalPage,
-        currentPage: page
-    })
+    if(type == "result"){
+        res.render('client/pages/products/search.pug', {
+            pageTitle: `Kết quả tìm kiếm: ${keyword}`,
+            keyword: keyword,
+            totalProduct: totalProduct,
+            products: paginatedProducts,
+            totalPage: totalPage,
+            currentPage: page
+        })
+    }
+    else if(type == "suggest"){
+        res.json({
+            products: productResult
+        })
+    }
+    
 }
 
 module.exports.detail = async (req, res) => {

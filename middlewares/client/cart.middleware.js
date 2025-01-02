@@ -1,8 +1,9 @@
 const Cart = require("../../models/cart.model");
 const Product = require("../../models/product.model");
+const User = require("../../models/user.model");
 
 module.exports.cart = async (req, res, next) => {
-    if(!req.cookies.cartId){
+    if (!req.cookies.cartId && !req.cookies.tokenUser) {
         const expriresDay = 365 * 24 * 60 * 60 * 10000;
 
         const cart = new Cart({
@@ -14,9 +15,10 @@ module.exports.cart = async (req, res, next) => {
             expires: new Date(Date.now() + expriresDay)
         })
 
+        res.locals.cart = 0;
         res.locals.miniCart = 0;
     }
-    else{
+    else if(req.cookies.cartId && !req.cookies.tokenUser){
         const cart = await Cart.findOne({
             _id: req.cookies.cartId
         });

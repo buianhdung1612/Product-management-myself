@@ -79,6 +79,7 @@ li {
 .header__search {
   display: flex;
   margin-left: 20px;
+  position: relative;
 }
 .header__filter {
   padding: 12px 18px;
@@ -124,6 +125,63 @@ li {
   border-radius: 50%;
   margin-left: 40px;
   margin-right: 40px;
+}
+.header__suggest {
+  background-color: white;
+  border: solid 0.5px #CCCCCC;
+  border-top: none;
+  width: 58.5%;
+  max-height: 420px;
+  position: absolute;
+  top: 100%;
+  left: 98px;
+  padding: 15px;
+  z-index: 1;
+  overflow-y: auto;
+  display: none;
+}
+.header__suggest.show {
+  display: block;
+}
+.header__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.header__item img {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.header__image {
+  width: 20%;
+  aspect-ratio: 1/1;
+  margin-right: 10px;
+}
+.header__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.header__content {
+  flex: 1;
+}
+.header__title {
+  font-size: 14px;
+  color: #0066cc;
+}
+.header__price {
+  margin-top: 5px;
+  font-size: 15px;
+}
+.header__priceNew {
+  color: #ff3300;
+  margin-right: 9px;
+  font-size: 16px;
+}
+.header__priceOld {
+  text-decoration: line-through;
+  color: #999999;
 }
 
 .sub-header {
@@ -278,20 +336,28 @@ li {
   color: #0066cc;
   margin-bottom: 70px;
 }
-.footer__socials i {
+.footer__socials .fa-facebook {
+  font-size: 20px;
+  color: #3E679A;
+  margin-right: 18px;
+}
+.footer__socials .fa-x-twitter {
   font-size: 20px;
   margin-right: 18px;
 }
-.footer__socials i:first-child {
-  color: #3E679A;
-}
-.footer__socials i:nth-child(3) {
+.footer__socials .fa-google-plus-g {
+  font-size: 20px;
+  margin-right: 18px;
   color: #CD542A;
 }
-.footer__socials i:nth-child(4) {
+.footer__socials .fa-youtube {
+  font-size: 20px;
+  margin-right: 18px;
   color: #C23733;
 }
-.footer__socials i:last-child {
+.footer__socials .fa-instagram {
+  font-size: 20px;
+  margin-right: 18px;
   color: #A1794B;
 }
 
@@ -771,7 +837,21 @@ li {
 .cart__hover-total span {
   color: #FF0000;
 }
+.cart__none {
+  padding: 16px 30px 16px 10px;
+  color: #707474;
+  background-color: white;
+  position: absolute;
+  z-index: 1001;
+  top: 142%;
+  left: -35%;
+  border: solid 0.5px #CCCCCC;
+  display: none;
+}
 .cart__icon:hover + .cart__hover {
+  display: block;
+}
+.cart__icon:hover + .cart__none {
   display: block;
 }
 

@@ -7,7 +7,12 @@ const settingchema = new mongoose.Schema(
         phone: String,
         email: String,
         address: String,
-        copyright: String
+        copyright: String,
+        facebook: String,
+        twitter: String,
+        google: String,
+        youtube: String,
+        instagram: String
     },
     {
         timestamps: true

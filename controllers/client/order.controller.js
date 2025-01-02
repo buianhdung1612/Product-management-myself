@@ -37,14 +37,32 @@ module.exports.index = async (req, res) => {
 
 module.exports.orderPost = async (req, res) => {
     const order = req.body;
-    const dataOrder = {
-        userId: res.locals.user.id,
-        fullName: order.fullName,
-        address: order.address,
-        phone: order.phone,
-        status: "wait",
-        products: []
-    };
+
+    let dataOrder = {};
+
+    if(res.locals.user){
+        const data = {
+            userId: res.locals.user.id,
+            fullName: order.fullName,
+            address: order.address,
+            phone: order.phone,
+            status: "wait",
+            products: []
+        };
+        dataOrder = data;
+    }
+
+    else{
+        const data = {
+            fullName: order.fullName,
+            address: order.address,
+            phone: order.phone,
+            status: "wait",
+            products: []
+        };
+        dataOrder = data;
+    }
+    
 
     const cartId = req.cookies.cartId;
     const cart = await Cart.findOne({

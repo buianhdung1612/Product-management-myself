@@ -12,36 +12,37 @@ div(class="header")
                     a(href="/products") Tất cả 
                     i(class="fa-solid fa-chevron-down")
                     +sub-category(allCategory)
-                form(action="/products/search" class="header__form")
-                    input(type="text" name="keyword" placeholder="Nhập sản phẩm tìm kiếm..." value=keyword)
+                form(action="/products/search/result" class="header__form")
+                    input(type="text" name="keyword" placeholder="Nhập sản phẩm tìm kiếm..." value=keyword autocomplete="off")
                     button(type="submit" class="button") Tìm kiếm
-                //- .inner-suggest 
-                //-     .inner-list
-                //-         a(href=`/products/detail/:slugProduct}` class="inner-item")
-                //-             .inner-content
+                .header__suggest
+                    .header__list
                                 
             div(class="header__icons")
                 a(href="/cart" class="cart__icon")
                     i(class="fa-solid fa-bag-shopping icon icon--shopping")
                     span(class="cart_number") (#{miniCart})
-                div(class="cart__hover")
-                    each item in cart
-                        div(class="cart__hover-item")
-                            div(class="cart__hover-left")
-                                a(href=`/products/detail/${item.slug}`)
-                                    img(src=item.thumbnail alt=item.title)
-                            div(class="cart__hover-middle")
-                                a(class="cart__hover-title" href=`/products/detail/${item.slug}`) #{item.title}
-                                span(class="cart__hover-quantity") #{item.quantity}
-                                span(class="cart__hover-dot") x
-                                span(class="cart__hover-priceNew") #{item.priceNew.toLocaleString()}đ
-                            div(class="cart__hover-right") X    
-                    div(class="cart__hover-total") 
-                        div Tổng số phụ: 
-                        span #{total.toLocaleString()}đ
-                    div(class="cart__hover-button")
-                        a(class="button-view" href="/cart") Xem giỏ hàng 
-                        a(class="button-pay" href="/order") Thanh toán
+                if(cart.length > 0)
+                    div(class="cart__hover")
+                        each item in cart
+                            div(class="cart__hover-item")
+                                div(class="cart__hover-left")
+                                    a(href=`/products/detail/${item.slug}`)
+                                        img(src=item.thumbnail alt=item.title)
+                                div(class="cart__hover-middle")
+                                    a(class="cart__hover-title" href=`/products/detail/${item.slug}`) #{item.title}
+                                    span(class="cart__hover-quantity") #{item.quantity}
+                                    span(class="cart__hover-dot") x
+                                    span(class="cart__hover-priceNew") #{item.priceNew.toLocaleString()}đ
+                                a(class="cart__hover-right" href=`/cart/delete/${item.productId}`) X    
+                        div(class="cart__hover-total") 
+                            div Tổng số phụ: 
+                            span #{total.toLocaleString()}đ
+                        div(class="cart__hover-button")
+                            a(class="button-view" href="/cart") Xem giỏ hàng 
+                            a(class="button-pay" href="/order") Thanh toán
+                else
+                    span(class="cart__none") Không có sản phẩm nào trong giỏ hàng
                 if(user)
                     a(href="/user/profile")
                         if(user.avatar)

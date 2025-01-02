@@ -16,8 +16,8 @@ const settingMiddleware = require("../../middlewares/client/setting.middleware")
 
 module.exports = (app) => {
     app.use(categoryMiddleware.category);
-    app.use(cartMiddleware.cart);
     app.use(userMiddleware.infoUser);
+    app.use(cartMiddleware.cart);
     app.use(settingMiddleware.general);
     app.use(settingMiddleware.information);
     app.use('/', homeRoute);

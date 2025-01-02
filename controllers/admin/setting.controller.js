@@ -10,7 +10,7 @@ module.exports.general = async (req, res) => {
 }
 
 module.exports.generalPatch = async (req, res) => {
-    if (res.locals.user.includes("settings_edit")) {
+    if (res.locals.role.permissions.includes("settings_edit")) {
         const existRecord = await Setting.findOne({});
         if (existRecord) {
             await Setting.updateOne({
