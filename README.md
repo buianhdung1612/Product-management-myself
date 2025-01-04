@@ -162,6 +162,12 @@ Hướng dẫn sử dụng trang Web
   ![image](https://github.com/user-attachments/assets/0768c782-af37-49f8-9b7f-919a85f81d95)
 
 
+**Các tính năng sẽ làm thêm**
++ Hiển thị các sản phẩm gợi ý
++ Responsive lại giao diện
++ Thể hiện thêm nhiều hình ảnh của sản phẩm, thêm chuyển động cho các ảnh
+
+
 
 
 
