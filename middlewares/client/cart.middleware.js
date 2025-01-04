@@ -16,7 +16,7 @@ module.exports.cart = async (req, res, next) => {
         })
 
         res.locals.cart = [];
-        res.locals.miniCart = "0";
+        res.locals.miniCart = 0;
     }
     else if(req.cookies.cartId && !req.cookies.tokenUser){
         const cart = await Cart.findOne({
