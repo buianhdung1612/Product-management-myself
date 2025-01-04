@@ -26,7 +26,7 @@ block main
                                 th Cập nhật bởi
                                 th Hành động
                         tbody
-                            if(roles.length > 0)
+                            if(roles && roles.length > 0)
                                 each item, index in roles
                                     tr
                                         td #{index + 1}

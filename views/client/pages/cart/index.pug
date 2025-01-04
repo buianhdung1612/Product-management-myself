@@ -5,7 +5,7 @@ block main
         div(class="container")
             h1(class="cart__title") #{pageTitle}
 
-            if(products.length > 0)
+            if(products.length && products.length > 0)
                 table(class="cart__table" table-cart)
                     thead
                         tr 
@@ -49,7 +49,6 @@ block main
                             span() #{total.toLocaleString()}₫
                         .cart__2.button 
                             a(href="/order") Tiến hành thanh toán
-
             else
                 .cart__empty
                     <i class="fa-regular fa-square"></i>

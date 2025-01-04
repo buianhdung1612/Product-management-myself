@@ -23,7 +23,7 @@ block main
                             td
                                 b #{order.address}
                 h4(class="success__info") Thông tin sản phẩm
-                if(order.products.length > 0)
+                if(order.products && order.products.length > 0)
                     table(class="cart__table" table-cart)
                         thead
                             th 

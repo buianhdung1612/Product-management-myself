@@ -22,7 +22,7 @@ div(class="header")
                 a(href="/cart" class="cart__icon")
                     i(class="fa-solid fa-bag-shopping icon icon--shopping")
                     span(class="cart_number") (#{miniCart})
-                if(cart.length > 0)
+                if(cart && cart.length > 0)
                     div(class="cart__hover")
                         each item in cart
                             div(class="cart__hover-item")
