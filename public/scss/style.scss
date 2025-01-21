@@ -28,6 +28,53 @@ li {
 
 // End Container
 
+// Banner
+.banner {
+    background-image: url("https://monacomputer.monamedia.net/wp-content/uploads/2024/03/pr.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 15px 0;
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+
+        &-left {
+            color: #F14705;
+            font-size: 48px;
+            font-weight: 300;
+            margin-right: 20px;
+        }
+    }
+
+    &__desc {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    &__main {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    &__button {
+        background-color: #f14705;
+        color: white;
+        padding: 7px 17px;
+        font-weight: 600;
+        border-radius: 5px;
+    }
+}
+// End Banner
+
 // Button
 .button {
     background-color: variable.$color-yellow;
